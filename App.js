@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter'
-import { AppLoading } from 'expo'
+import AppLoading from 'expo-app-loading'
 import Home from './screens/home'
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false)
+  let [fontsLoaded] = useFonts({ Inter_900Black })
 
-  if (fontsLoaded) {
-    return (
-      <AppLoading startAsync={useFonts} onFinish={() => setFontsLoaded(true)} />
-    )
+  if (!fontsLoaded) {
+    return <AppLoading />
   } else {
     return <Home />
   }
