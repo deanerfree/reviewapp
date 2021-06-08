@@ -1,6 +1,16 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
+import React, { useState } from 'react'
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter'
+import { AppLoading } from 'expo'
 import Home from './screens/home'
+
 export default function App() {
-  return <Home />
+  const [fontsLoaded, setFontsLoaded] = useState(false)
+
+  if (fontsLoaded) {
+    return (
+      <AppLoading startAsync={useFonts} onFinish={() => setFontsLoaded(true)} />
+    )
+  } else {
+    return <Home />
+  }
 }
