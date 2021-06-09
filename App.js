@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter'
 import AppLoading from 'expo-app-loading'
-import Navigator from './routes/homeStack'
+import Navigator from './routes/drawer'
 
 export default function App() {
   let [fontsLoaded] = useFonts({ Inter_900Black })
