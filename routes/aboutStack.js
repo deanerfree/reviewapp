@@ -20,7 +20,7 @@ const screens = {
 const AboutStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#444',
-    headerStyle: { backgroundColor: { backgroundColor: '#eee', height: 60 } },
+    headerStyle: { backgroundColor: '#eee', height: 60 },
   },
 })
 

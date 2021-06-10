@@ -8,7 +8,6 @@ const screens = {
   //Whatever is the first object that will be what is displayed first ie Home
   Home: {
     screen: Home,
-    headerTitleAlign: 'center',
     navigationOptions: ({ navigation }) => {
       //headerTitle prop can take in a function instead of a string compared to 'title'
       return {
@@ -22,20 +21,14 @@ const screens = {
     screen: ReviewDetails,
     navigationOptions: {
       title: 'Reviews',
-      headerStyle: {
-        backgroundColor: '#eee',
-      },
     },
   },
 }
 
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    flex: 1,
     headerTintColor: '#444',
-    headerStyle: {
-      backgroundColor: { backgroundColor: '#eee', height: 60 },
-    },
+    headerStyle: { backgroundColor: '#eee', height: 60 },
   },
 })
 

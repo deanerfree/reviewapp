@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+} from 'react-native'
 import { globalStyles } from '../globalStyles/global'
 import { getText } from 'lorembarnak'
 import Card from '../shared/card'
+import { MaterialIcons } from '@expo/vector-icons'
 
 const Home = ({ navigation }) => {
   const specificLength = getText(20)
+  const [toggleModal, setToggleModal] = useState(false)
   const [reviews, setReviews] = useState([
     { title: 'Zelda', rating: 3, body: specificLength, key: '1' },
     { title: 'Metro 2033', rating: 5, body: specificLength, key: '2' },
@@ -18,8 +27,44 @@ const Home = ({ navigation }) => {
     { title: 'X-Com', rating: 3, body: specificLength, key: '4' },
     { title: 'Witcher 3 Wild Hunt', rating: 4, body: specificLength, key: '5' },
   ])
+
+  const toggleHandler = () => {
+    setToggleModal(!toggleModal)
+  }
+  const styles = StyleSheet.create({
+    modalToggle: {
+      marginBottom: 10,
+      borderWidth: 1,
+      borderColor: '#f2f2f2',
+      padding: 10,
+      borderRadius: 10,
+      alignSelf: 'center',
+    },
+    modalContent: {
+      flex: 1,
+    },
+    modalClose: {
+      marginTop: 20,
+      marginBottom: 0,
+    },
+  })
   return (
     <View style={globalStyles.container}>
+      <Modal visible={toggleModal} animationType="slide">
+        <MaterialIcons
+          style={{ ...styles.modalToggle, ...styles.modalClose }}
+          name="close"
+          size={24}
+          onPress={toggleHandler}
+        />
+        <Text>Hello from the Modal</Text>
+      </Modal>
+      <MaterialIcons
+        style={styles.modalToggle}
+        name="add"
+        size={24}
+        onPress={toggleHandler}
+      />
       <FlatList
         data={reviews}
         renderItem={({ item }) => (

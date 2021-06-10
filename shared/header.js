@@ -3,8 +3,10 @@ import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
 const Header = ({ navigation, title }) => {
+  //toggles the drawer
   const openMenu = () => {
     navigation.openDrawer()
+    console.log('click')
   }
 
   return (
