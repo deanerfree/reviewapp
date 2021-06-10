@@ -11,6 +11,7 @@ import { globalStyles } from '../globalStyles/global'
 import { getText } from 'lorembarnak'
 import Card from '../shared/card'
 import { MaterialIcons } from '@expo/vector-icons'
+import ReviewForm from '../screens/reviewForm'
 
 const Home = ({ navigation }) => {
   const specificLength = getText(20)
@@ -51,13 +52,15 @@ const Home = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
       <Modal visible={toggleModal} animationType="slide">
-        <MaterialIcons
-          style={{ ...styles.modalToggle, ...styles.modalClose }}
-          name="close"
-          size={24}
-          onPress={toggleHandler}
-        />
-        <Text>Hello from the Modal</Text>
+        <View style={styles.modalContent}>
+          <MaterialIcons
+            style={{ ...styles.modalToggle, ...styles.modalClose }}
+            name="close"
+            size={24}
+            onPress={toggleHandler}
+          />
+          <ReviewForm />
+        </View>
       </Modal>
       <MaterialIcons
         style={styles.modalToggle}
