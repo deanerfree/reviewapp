@@ -12,7 +12,9 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       //headerTitle prop can take in a function instead of a string compared to 'title'
       return {
-        headerTitle: () => <Header navigation={navigation} title="home" />,
+        headerTitle: () => (
+          <Header navigation={navigation} title="Game Review" />
+        ),
       }
     },
   },
@@ -29,6 +31,7 @@ const screens = {
 
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
+    flex: 1,
     headerTintColor: '#444',
     headerStyle: {
       backgroundColor: { backgroundColor: '#eee', height: 60 },

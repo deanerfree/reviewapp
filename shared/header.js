@@ -1,36 +1,40 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
-import { Dimensions } from 'react-native'
 
-export default function Header({ navigation }) {
+const Header = ({ navigation, title }) => {
   const openMenu = () => {
     navigation.openDrawer()
   }
 
   return (
-    <View style={styles.header}>
+    <ImageBackground
+      source={require('../assets/game_bg.png')}
+      style={styles.header}
+    >
       <MaterialIcons
         name="menu"
         size={28}
         onPress={openMenu}
         style={styles.icon}
       />
-      <View>
-        <Text style={styles.headerText}>Game Review</Text>
+      <View style={styles.headerThing}>
+        <Text style={styles.headerText}>{title}</Text>
+        <Image
+          style={styles.headerImage}
+          source={require('../assets/heart_logo.png')}
+        />
       </View>
-    </View>
+    </ImageBackground>
   )
 }
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
     width: '100%',
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
   },
   headerText: {
     fontWeight: 'bold',
@@ -42,5 +46,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 16,
   },
+  headerImage: {
+    height: 26,
+    width: 26,
+    marginHorizontal: 10,
+  },
+  headerThing: {
+    flexDirection: 'row',
+  },
 })
-// export default Header
+export default Header
