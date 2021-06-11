@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Modal,
   StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native'
 import { globalStyles } from '../globalStyles/global'
 import { getText } from 'lorembarnak'
@@ -28,6 +30,14 @@ const Home = ({ navigation }) => {
     { title: 'X-Com', rating: 3, body: specificLength, key: '4' },
     { title: 'Witcher 3 Wild Hunt', rating: 4, body: specificLength, key: '5' },
   ])
+
+  const addReview = (review) => {
+    review.key = Math.random().toString()
+    setReviews((currentReviews) => {
+      return [review, ...currentReviews]
+    })
+    setToggleModal(!toggleModal)
+  }
 
   const toggleHandler = () => {
     setToggleModal(!toggleModal)
@@ -52,15 +62,17 @@ const Home = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
       <Modal visible={toggleModal} animationType="slide">
-        <View style={styles.modalContent}>
-          <MaterialIcons
-            style={{ ...styles.modalToggle, ...styles.modalClose }}
-            name="close"
-            size={24}
-            onPress={toggleHandler}
-          />
-          <ReviewForm />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              name="close"
+              size={24}
+              onPress={toggleHandler}
+            />
+            <ReviewForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
       <MaterialIcons
         style={styles.modalToggle}
